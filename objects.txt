@@ -1,5 +1,5 @@
 class Shape {
-    constructor(color="red", filled=true ) {
+    constructor(color="azul", filled=false ) {
         this._color = color
         this._filled = filled
     }
@@ -27,67 +27,67 @@ class Shape {
 }
 
 class Circle extends Shape{
-    constructor(radius=1.0){
+    constructor(radius){
         super()
-        this._radius = radius
+        this.radius = 1.0
     }
     getRadius(){
-        return this._radius 
+        return this.radius 
     }
     setRadius(newRadius){
-        this._radius = newRadius
+        this.radius = newRadius
     }
     getPerimeter(){
         super.getPerimeter()
-        return 2*(3.14 * this._radius)
+        return 2*(3.14 * this.radius)
     }
     getArea(){
         super.getArea()
-        return 3.14 * (this._radius * this._radius)
+        return 3.14 * (this.radius * this.radius)
     }
     toString(){
         super.toString()
-        return `Circle[Shape[color=${this.getColor()}, filled=${this.getFilled()}], radius=${this._radius}]`
+        return `Circle[Shape[color=${this.getColor()}, filled=${this.getFilled()}], radius=${this.radius}, perimeter=${this.getPerimeter()}, area=${this.getArea()}]`
     }
 
 }
 
 class Rectangle extends Shape{
-    constructor(width=1, length=1){
+    constructor(width, length){
         super()
-        this._width = width
-        this._length = length
+        this.width = 1.0
+        this.length = 1.0
     }
     getWidth(){
-        return this._width 
+        return this.width 
     }
     setWidth(newWidth){
-        this._width = newWidth
+        this.width = newWidth
     }
     getLength(){
-        return this._length 
+        return this.length 
     }
     setLength(newLength){
-        this._length = newLength
+        this.length = newLength
     }
     getPerimeter(){
         super.getPerimeter()
-        return (2*this._width)+(2*this._length)
+        return (2*this.width)+(2*this.length)
     }
     getArea(){
         super.getArea()
-        return this._width * this._length
+        return this.width * this.length
     }
     toString(){
         super.toString()
-        return `Rectangle[Shape[color=${this.getColor()}, filled=${this.getFilled()}], width=${this._width}, length=${this._length}]`
+        return `Rectangle[Shape[color=${this.getColor()}, filled=${this.getFilled()}], width=${this.width}, length=${this.length}, perimeter=${this.getPerimeter()}, area=${this.getArea()}]`
     }
 }
 
 class Square extends Rectangle{
-    constructor(side=1){
+    constructor(side){
         super()
-        this.side = side
+        this.side = 1.0
     }
     getSide(){
         return this.side 
@@ -105,32 +105,39 @@ class Square extends Rectangle{
     }
     toString(){
         super.toString()
-        return `Square[Rectangle[Shape[color=${this.getColor()}, filled=${this.getFilled()}],width=${this.getWidth()}, length=${this.getLength()}]]`
+        return `Square[Rectangle[Shape[color=${this.getColor()}, filled=${this.getFilled()}],width=${this.width}, length=${this.length}], side=${this.side}, perimeter=${this.getPerimeter()}, area=${this.getArea()}]`
     }
 }
 
-class EquilateralTriangle extends Shape{
-    constructor(sideLength=1){
+class Triangle extends Shape{
+    constructor(width, height){
         super()
-        this._sideLength = sideLength
+        this.width = 1.0
+        this.height = 1.0
     }
-    getsideLength(){
-        return this._sideLength 
+    getWidth(){
+        return this.width 
     }
-    setsideLength(newsideLength){
-        this._sideLength = newsideLength
+    setWidth(newWidth){
+        this.width = newWidth
+    }
+    getHeight(){
+        return this.height 
+    }
+    setLength(newHeight){
+        this.length = newHeight
     }
     getPerimeter(){
         super.getPerimeter()
-        return 3*this._sideLength
+        return (2*this.height) + this.width
     }
     getArea(){
         super.getArea()
-        return Math.sqrt(3) / 4 * (this._sideLength * this._sideLength)
+        return (this.width * this.height)/2
     }
     toString(){
         super.toString()
-        return `Triangle[Shape[color=${this.getColor()}, filled=${this.getFilled()}], sideLength=${this._sideLength}]`
+        return `Triangle[Shape[color=${this.getColor()}, filled=${this.getFilled()}], width=${this.width}, length=${this.height}, perimeter=${this.getPerimeter()}, area=${this.getArea()}]`
     }
 }
 
@@ -142,7 +149,7 @@ const rectangle = new Rectangle()
 console.log(rectangle.toString())
 const square = new Square()
 console.log(square.toString())
-const triangle = new EquilateralTriangle()
+const triangle = new Triangle()
 console.log(triangle.toString())
 
 //console.log(newCircle.setRadius(2))
